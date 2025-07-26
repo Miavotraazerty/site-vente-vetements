@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-t9*k&qk#i=3^-q+ycq8n-l6q)m_t19r_$2k6exmpn*g0!!(@w)
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -146,6 +146,11 @@ LOGOUT_REDIRECT_URL = 'liste_produits'  # Redirection après déconnexion
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
