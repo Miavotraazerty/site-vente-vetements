@@ -70,7 +70,7 @@ def acceuil(request):
         recommandations = recommandations_utilisateur(request.user)
 
         produits = Produit.objects.all()
-        return render(request, "boutique_app/acceuil.html", {"produits": produits, "recommandations": recommandations})
+        return render(request, "boutique_app/index.html", {"produits": produits, "recommandations": recommandations})
     elif not produits:
         produits = Produit.objects.all()[:10]
         cache.set('produits_accueil', produits, timeout=60*10)  # Cache 10 minutes
